@@ -35,33 +35,3 @@ async def main(message: str):
     # Send the response
     await cl.Message(content=res["text"]).send()
 
-
-@cl.on_button("Submit")
-async def button(button: str):
-    # Get the user's name
-    name = res["data"]["name"]
-    # Get the user's email
-    email = res["data"]["email"]
-    # Get the user's phone number
-    phone_number = res["data"]["phone_number"]
-    # Get the user's address
-    address = res["data"]["address"]
-    # Get the user's education
-    education = res["data"]["education"]
-
-    # Write the user's information to a CSV file
-    with open("user_info.csv", "a") as csvfile:
-        writer = csv.writer(csvfile)
-        writer.writerow([name, email, phone_number, address, education])
-
-    # Print the user's information
-    print(f"Name: {name}")
-    print(f"Email: {email}")
-    print(f"Phone number: {phone_number}")
-    print(f"Address: {address}")
-    print(f"Education: {education}")
-    # End the chat
-    await cl.Message(content="Thank you for registering!").send()
-
-
-cl.run(main)
